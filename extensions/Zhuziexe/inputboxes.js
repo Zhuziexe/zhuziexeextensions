@@ -104,36 +104,10 @@
                 this._safeStartHats(fullOpcode);
               }
             }
-<<<<<<< HEAD
             if (!runtime._cache) {
                 try { const _scripts = runtime.scripts; } catch (e) { }
                 if (!runtime._cache) runtime._cache = {};
             }
-=======
-          }
-        },
-        true
-      );
-    }
-
-    _safeStartHats(opcode) {
-      const runtime = Scratch && Scratch.vm && Scratch.vm.runtime;
-      if (!runtime) {
-        setTimeout(() => this._safeStartHats(opcode), 100);
-        return;
-      }
-      if (!runtime._cache) {
-        try {
-          const scripts = runtime.scripts;
-        } catch (e) {}
-        if (!runtime._cache) runtime._cache = {};
-      }
-      try {
-        runtime.startHats(opcode);
-      } catch (e) {
-        setTimeout(() => {
-          if (runtime._cache) {
->>>>>>> b0fb699ce50fc6d1a1d5fc0434245aabd82b8e3f
             try {
               runtime.startHats(opcode);
             } catch (ex) {}
@@ -206,7 +180,6 @@
       const rect = canvas.getBoundingClientRect();
       const scale = rect.width / 480;
 
-<<<<<<< HEAD
             for (const [_id, meta] of this.inputs) {
                 if (!meta.element) continue;
                 const el = meta.element;
@@ -218,30 +191,6 @@
                 el.style.height = (meta.logicHeight * scale) + 'px';
             }
             this._checkModalOpen();
-=======
-      for (const [id, meta] of this.inputs) {
-        if (!meta.element) continue;
-        const el = meta.element;
-        const left = meta.logicX * scale + rect.width / 2;
-        const top = rect.height / 2 - meta.logicY * scale;
-        el.style.left = left + "px";
-        el.style.top = top + "px";
-        el.style.width = meta.logicWidth * scale + "px";
-        el.style.height = meta.logicHeight * scale + "px";
-      }
-      this._checkModalOpen();
-    }
-
-    getContainer() {
-      const canvas = document.querySelector("canvas");
-      if (!canvas) {
-        if (!this.container) {
-          const container = document.createElement("div");
-          container.style.cssText =
-            "position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:1000";
-          document.body.appendChild(container);
-          this.container = container;
->>>>>>> b0fb699ce50fc6d1a1d5fc0434245aabd82b8e3f
         }
         return this.container;
       }
@@ -377,19 +326,12 @@
 
     cmdDeleteAll() {
       try {
-        for (const [id, meta] of this.inputs)
+        for (const [_id, meta] of this.inputs)
           if (meta.element) meta.element.remove();
         this.inputs.clear();
       } catch (e) {}
     }
 
-<<<<<<< HEAD
-        cmdDeleteAll() {
-            try {
-                for (const [_id, meta] of this.inputs) if (meta.element) meta.element.remove();
-                this.inputs.clear();
-            } catch (e) { }
-=======
     cmdDeleteById(args) {
       try {
         const { ID } = args;
@@ -397,7 +339,6 @@
         if (meta) {
           if (meta.element) meta.element.remove();
           this.inputs.delete(ID);
->>>>>>> b0fb699ce50fc6d1a1d5fc0434245aabd82b8e3f
         }
       } catch (e) {}
     }
